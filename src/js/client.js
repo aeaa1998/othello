@@ -89,56 +89,49 @@ const render = (mount, state) => {
 				let emptySpaces = false
 				if (catchLeft) {
 					const firstLeft = leftDifference.reverse().find(column => boardMatrix[rowIndex][column] == actualTurn)
+					console.log(firstLeft)
+					_.range(firstLeft + 1, columnIndex).forEach((column) => {if(boardMatrix[rowIndex][column] == 0 && !emptySpaces) emptySpaces = !emptySpaces})
 					_.range(firstLeft + 1, columnIndex).forEach((column) => {
 						if(boardMatrix[rowIndex][column] != actualTurn && boardMatrix[rowIndex][column] != 0 && !emptySpaces){
 							boardMatrix[rowIndex][column] = actualTurn
 							allCells[rowIndex][column].firstChild.style.display = 'block'
 							allCells[rowIndex][column].firstChild.style.background = (actualTurn == 1) ? 'black' : 'white'
-						}else if (boardMatrix[rowIndex][column] == 0){
-							emptySpaces = !emptySpaces
-
 						}
 					})
 					emptySpaces = false
 				}
 				if (catchRight) {
 					const firstRight = rightDifference.find(column => boardMatrix[rowIndex][column] == actualTurn)
+					_.range(columnIndex + 1, firstRight).forEach((column) => {if(boardMatrix[rowIndex][column] == 0 && !emptySpaces) emptySpaces = !emptySpaces})
 					_.range(columnIndex + 1, firstRight).reverse().forEach((column) => {
 						if(boardMatrix[rowIndex][column] != actualTurn && boardMatrix[rowIndex][column] != 0 && !emptySpaces){
 							boardMatrix[rowIndex][column] = actualTurn
 							allCells[rowIndex][column].firstChild.style.display = 'block'
 							allCells[rowIndex][column].firstChild.style.background = (actualTurn == 1) ? 'black' : 'white'
-						}else if (boardMatrix[rowIndex][column] == 0){
-							emptySpaces = !emptySpaces
-
 						}
 					})
 					emptySpaces = false
 				}
 				if (catchUp) {
 					const firstUp = upDifference.reverse().find(row => boardMatrix[row][columnIndex] == actualTurn)
+					_.range(firstUp + 1, rowIndex).forEach((row) => {if(boardMatrix[row][columnIndex] == 0 && !emptySpaces) emptySpaces = !emptySpaces})
 					_.range(firstUp + 1, rowIndex).forEach((row) => {
 						if(boardMatrix[row][columnIndex] != actualTurn && boardMatrix[row][columnIndex] != 0 && !emptySpaces){
 							boardMatrix[row][columnIndex] = actualTurn
 							allCells[row][columnIndex].firstChild.style.display = 'block'
 							allCells[row][columnIndex].firstChild.style.background = (actualTurn == 1) ? 'black' : 'white'
-						}else if (boardMatrix[row][columnIndex] == 0){
-							emptySpaces = !emptySpaces
-
 						}
 					})
 					emptySpaces = false
 				}
 				if (catchDown) {
 					const firstDown = downDifference.find(row => boardMatrix[row][columnIndex] == actualTurn)
+					_.range(rowIndex + 1, firstDown).forEach((row) => {if(boardMatrix[row][columnIndex] == 0 && !emptySpaces) emptySpaces = !emptySpaces})
 					_.range(rowIndex + 1, firstDown).forEach((row) => {
 						if(boardMatrix[row][columnIndex] != actualTurn && boardMatrix[row][columnIndex] != 0 && !emptySpaces){
 							boardMatrix[row][columnIndex] = actualTurn
 							allCells[row][columnIndex].firstChild.style.display = 'block'
 							allCells[row][columnIndex].firstChild.style.background = (actualTurn == 1) ? 'black' : 'white'
-						}else if (boardMatrix[row][columnIndex] == 0){
-							emptySpaces = !emptySpaces
-
 						}
 					})
 					emptySpaces = false
